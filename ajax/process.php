@@ -379,10 +379,55 @@ case '#vcard':
         $output_data .= 'END:VCARD'; 
 
         if ($_POST['save']=="TRUE") {
+            $profiledata=filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            if (!empty($profiledata['profilepicVal'])) {
+                $matches=array();
+                $base64DataString = $profiledata['profilepicVal'];
+
+                // extract image data from base64 data string
+                $pattern = '/data:image\/(.+);base64,(.*)/';
+                preg_match($pattern, $base64DataString, $matches);
+
+                // image file extension
+                $imageExtension = $matches[1];
+
+                // base64-encoded image data
+                $encodedImageData = $matches[2];
+
+                // decode base64-encoded image data
+                $decodedImageData = base64_decode($encodedImageData);
+
+                // save image data as file
+                file_put_contents("../images/profile-picture/{$_POST['token']}pp.{$imageExtension}", $decodedImageData);
+                $profiledata['profilepicVal']="./images/profile-picture/{$_POST['token']}pp.{$imageExtension}";
+            }
+            
+            if (!empty($profiledata['companylogoVal'])) {
+                $matches=array();
+                $base64DataString = $profiledata['companylogoVal'];
+
+                // extract image data from base64 data string
+                $pattern = '/data:image\/(.+);base64,(.*)/';
+                preg_match($pattern, $base64DataString, $matches);
+
+                // image file extension
+                $imageExtension = $matches[1];
+
+                // base64-encoded image data
+                $encodedImageData = $matches[2];
+
+                // decode base64-encoded image data
+                $decodedImageData = base64_decode($encodedImageData);
+
+                // save image data as file
+                file_put_contents("../images/company-logo/{$_POST['token']}cl.{$imageExtension}", $decodedImageData);
+                $profiledata['companylogoVal']="./images/company-logo/{$_POST['token']}cl.{$imageExtension}";
+            }
             include '../dbConn.php';
-            $sql = "INSERT INTO `profile` (`id`, `user_id`, `profile`, `vcard`, `token`, `timecreated`) VALUES (NULL, NULL, '".json_encode($_POST)."', '$output_data', '".$_POST['token']."', current_timestamp());";
+            $sql = "INSERT INTO `profile` (`id`, `user_id`, `profile`, `vcard`, `token`, `timecreated`) VALUES (NULL, NULL, '".json_encode($profiledata)."', '$output_data', '".$_POST['token']."', current_timestamp());";
             $insert= mysqli_query($db, $sql);
-            $output_data="http://localhost/qrcdr/profile.php?token=".$_POST['token'];
+            $output_data="http://qr.konemamwenenge.com/profile.php?token=".$_POST['token'];
         }
     }
     break;

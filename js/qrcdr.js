@@ -21,7 +21,7 @@
         qrcdr: function(options) {
             var plugin = this;
             var $myForm, formInputs, formOnInput, formOnChange, submitform, linksholder, qrcolorpicker, colorpickerback, preloader, alert_placeholder, transparent_bg, resultholder, generate_qrcode_btn, holdresult;
-            var collapse_control, collapse_control_reverse, upmarker, isSvg, event, map, timer, setvalue, yesdonation, nodonation, init_lat, init_lng, btcInput, settings, tabs, section, relative, sendOptions, slider;
+            var collapse_control, collapse_control_reverse, upmarker,profilepic, companylogo, isSvg, event, map, timer, setvalue, yesdonation, nodonation, init_lat, init_lng, btcInput, settings, tabs, section, relative, sendOptions, slider;
             var removebg, exportbg, gradientbg, transbg, imagefield, selectbg, cropinput, imageeditor, collapsebg, cropzoom, croppreview, negative;
 
             var svgIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 48 48"><path d="M28.9,18.4l-3.4,3.4V10.5C25.5,9.7,24.8,9,24,9s-1.5,0.7-1.5,1.5v11.4l-3.4-3.4c-0.6-0.6-1.5-0.6-2.1,0 c-0.6,0.6-0.6,1.5,0,2.1l6,6c0.6,0.6,1.5,0.6,2.1,0c0,0,0,0,0,0l6-6c0.6-0.6,0.6-1.5,0-2.1C30.5,17.9,29.5,17.9,28.9,18.4z"/><path d="M42,30V13.5L28.5,0H12C8.7,0,6,2.7,6,6v24c-1.7,0.1-3,1.4-3,3.1v5.8c0,1.7,1.3,3,3,3.1v0c0,3.3,2.7,6,6,6h24 c3.3,0,6-2.7,6-6v0c1.7-0.1,3-1.4,3-3.1v-5.8C45,31.4,43.7,30.1,42,30z M36,45H12c-1.7,0-3-1.3-3-3h30C39,43.7,37.7,45,36,45z M16.6,37.2c-0.2-0.2-0.4-0.3-0.7-0.4c-0.3-0.1-0.6-0.2-1.1-0.3c-0.6-0.1-1.1-0.3-1.6-0.5c-0.4-0.2-0.8-0.5-1-0.8 c-0.2-0.3-0.4-0.8-0.4-1.3c0-0.5,0.1-0.9,0.4-1.3c0.3-0.4,0.6-0.7,1.1-0.9c0.5-0.2,1.1-0.3,1.7-0.3c0.5,0,1,0.1,1.4,0.2 c0.4,0.1,0.7,0.3,1,0.5c0.3,0.2,0.4,0.4,0.6,0.7c0.1,0.2,0.2,0.5,0.2,0.7c0,0.2-0.1,0.4-0.2,0.6s-0.3,0.3-0.6,0.3 c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.3-0.5c-0.2-0.3-0.3-0.6-0.6-0.8c-0.2-0.2-0.6-0.3-1.1-0.3c-0.5,0-0.8,0.1-1.1,0.3 s-0.4,0.4-0.4,0.7c0,0.2,0,0.3,0.1,0.4c0.1,0.1,0.2,0.2,0.4,0.3c0.2,0.1,0.3,0.2,0.5,0.2c0.2,0.1,0.4,0.1,0.8,0.2 c0.5,0.1,0.9,0.2,1.3,0.4c0.4,0.1,0.7,0.3,1,0.5c0.3,0.2,0.5,0.4,0.6,0.7s0.2,0.7,0.2,1.1c0,0.5-0.1,1-0.4,1.4 c-0.3,0.4-0.7,0.7-1.2,1c-0.5,0.2-1.1,0.4-1.8,0.4c-0.9,0-1.6-0.2-2.1-0.5c-0.4-0.2-0.7-0.5-1-0.9c-0.2-0.4-0.4-0.8-0.4-1.1 c0-0.2,0.1-0.4,0.2-0.5s0.3-0.2,0.6-0.2c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.3,0.5c0.1,0.3,0.2,0.5,0.4,0.7s0.3,0.3,0.5,0.5 c0.2,0.1,0.5,0.2,0.9,0.2c0.5,0,0.9-0.1,1.3-0.4c0.3-0.2,0.5-0.5,0.5-0.9C16.9,37.7,16.8,37.4,16.6,37.2z M19.5,32.4 c0-0.2,0.1-0.4,0.2-0.5s0.4-0.2,0.6-0.2c0.3,0,0.5,0.1,0.6,0.3c0.1,0.2,0.2,0.5,0.4,0.9l2,5.8l2-5.8c0.1-0.3,0.2-0.5,0.2-0.6 c0.1-0.1,0.1-0.2,0.3-0.3c0.1-0.1,0.3-0.1,0.5-0.1c0.2,0,0.3,0,0.4,0.1c0.1,0.1,0.2,0.2,0.3,0.3s0.1,0.2,0.1,0.4c0,0.1,0,0.2,0,0.3 S27,32.8,27,32.9c0,0.1-0.1,0.2-0.1,0.3l-2.1,5.6c-0.1,0.2-0.2,0.4-0.2,0.6c-0.1,0.2-0.2,0.4-0.3,0.5s-0.2,0.3-0.4,0.4 s-0.4,0.1-0.6,0.1c-0.2,0-0.4,0-0.6-0.1c-0.2-0.1-0.3-0.2-0.4-0.4c-0.1-0.2-0.2-0.3-0.3-0.5c-0.1-0.2-0.1-0.4-0.2-0.6l-2.1-5.6 c0-0.1-0.1-0.2-0.1-0.3c0-0.1-0.1-0.2-0.1-0.3C19.5,32.5,19.5,32.4,19.5,32.4z M30.4,38.3c0.5,0.5,1.1,0.8,1.9,0.8 c0.4,0,0.8-0.1,1.1-0.2c0.4-0.1,0.7-0.3,1.1-0.5v-1.4h-1.4c-0.3,0-0.6,0-0.7-0.1c-0.2-0.1-0.3-0.3-0.3-0.5c0-0.2,0.1-0.4,0.2-0.5 c0.1-0.1,0.3-0.2,0.6-0.2h2c0.2,0,0.5,0,0.6,0.1c0.2,0,0.3,0.1,0.4,0.3c0.1,0.1,0.2,0.4,0.2,0.7v1.7c0,0.2,0,0.4-0.1,0.5 c0,0.1-0.1,0.2-0.2,0.4s-0.3,0.2-0.4,0.3c-0.5,0.3-1,0.5-1.5,0.6s-1,0.2-1.6,0.2c-0.7,0-1.3-0.1-1.8-0.3c-0.5-0.2-1-0.5-1.4-0.9 c-0.4-0.4-0.7-0.9-0.9-1.4c-0.2-0.6-0.3-1.2-0.3-1.9c0-0.7,0.1-1.3,0.3-1.8c0.2-0.6,0.5-1,0.9-1.4s0.9-0.7,1.4-0.9 c0.6-0.2,1.2-0.3,1.9-0.3c0.6,0,1.1,0.1,1.5,0.2s0.8,0.4,1.1,0.6c0.3,0.2,0.5,0.5,0.6,0.7c0.1,0.3,0.2,0.5,0.2,0.7 c0,0.2-0.1,0.4-0.2,0.6s-0.4,0.2-0.6,0.2c-0.1,0-0.2,0-0.4-0.1c-0.1-0.1-0.2-0.1-0.3-0.2c-0.2-0.3-0.4-0.6-0.5-0.8 c-0.1-0.2-0.4-0.3-0.6-0.4c-0.3-0.1-0.6-0.2-1-0.2c-0.4,0-0.8,0.1-1.1,0.2s-0.6,0.3-0.8,0.6s-0.4,0.6-0.5,1 c-0.1,0.4-0.2,0.8-0.2,1.3C29.7,37,29.9,37.8,30.4,38.3z M39,30H9V6c0-1.7,1.3-3,3-3h16.5v6c0,2.5,2,4.5,4.5,4.5h6V30z"/></svg>';
@@ -67,6 +67,11 @@
                 collapse_control_reverse = obj.find('.collapse-control-reverse');
                 btcInput = obj.find('input[name=btc_account]');
                 upmarker = obj.find('#upmarker');
+                console.log('upmarker',upmarker)
+                profilepic = obj.find('#profilepic');
+                console.log('profilepic',profilepic)
+                companylogo = obj.find('#companylogo');
+                console.log('companylogo',companylogo)
                 event = obj.find('#event');
                 settings = obj.find('#collapseSettings :input');
                 tabs = obj.find('a[data-toggle="tab"]');
@@ -517,6 +522,144 @@
 
                                 $('.logoselecta .btn-group-toggle label' ).last().find('img').attr('src', dataurl);
                                 $('.logoselecta .btn-group-toggle label' ).last().find( "input[name='optionlogo']" ).val(dataurl);
+                            }
+                        }; // img.onload
+                    } else {
+                        $(this).addClass('is-invalid');
+                    }
+                });
+
+                 /*
+                 * Upload profile picture
+                 */
+                profilepic.on('change', function(e){
+                    $(this).removeClass('is-invalid');
+                    if (this.files[0].type.match('image.*')) {
+                        var file = this.files[0];
+                        var newimg = new Image();
+                        newimg.crossOrigin = "Anonymous";
+                        var reader = new FileReader();
+
+                        if (file.type.indexOf('svg') > 0) {
+                            isSvg = 'svg';
+                        }
+
+                        reader.onload = function (e) {
+                            $('.logoselecta label').removeClass('active').find('input').removeAttr('checked');
+                            var out = '<img src="'+e.target.result+'" class="user_watermark">';
+                            // Update custom watermark option
+                            $('.custom-watermark .hold-custom-watermark').html(out);
+                            newimg.src = $('.logoselecta .btn-group-toggle label' ).last().find('img').attr('src');
+                            // $('.custom-watermark').addClass('active');
+                            // $('.custom-watermark input').val(e.target.result).prop("checked", true);
+                        };
+
+                        reader.readAsDataURL(file);
+
+                        newimg.onload = function () {
+                            var canvas = document.createElement("canvas");
+
+                            // resize thumb
+                            var MAX_WIDTH = 400;
+                            var MAX_HEIGHT = 400;
+                            var width = this.width;
+                            var height = this.height;
+                        
+                            if (!options.svglogo || (options.svglogo && isSvg !== 'svg')) {
+                                if (width == 0 || height == 0) {
+                                    $('#profilepic').addClass('is-invalid');
+                                    $('.logoselecta .btn-group-toggle label' ).last().remove();
+                                    return false;
+                                }
+                                var ctx = canvas.getContext("2d");
+                                ctx.drawImage(newimg, 0, 0);
+
+                                if (width > height) {
+                                    height *= MAX_WIDTH / width;
+                                    width = MAX_WIDTH;
+                                } else {
+                                    width *= MAX_HEIGHT / height;
+                                    height = MAX_HEIGHT;
+                                }
+                                canvas.width = width;
+                                canvas.height = height;
+
+                                var ctx = canvas.getContext("2d");
+                                ctx.drawImage(newimg, 0, 0, width, height);
+                                var ppdataurl = canvas.toDataURL();
+
+                                $('#profilepicImg').attr('src', ppdataurl);
+                                $('#profilepicVal').val(ppdataurl);
+                                $('.user_watermark').attr('src', '');
+                            }
+                        }; // img.onload
+                    } else {
+                        $(this).addClass('is-invalid');
+                    }
+                });
+
+                 /*
+                 * Upload Company Logo
+                 */
+                companylogo.on('change', function(e){
+                    $(this).removeClass('is-invalid');
+                    if (this.files[0].type.match('image.*')) {
+                        var file = this.files[0];
+                        var newimg = new Image();
+                        newimg.crossOrigin = "Anonymous";
+                        var reader = new FileReader();
+
+                        if (file.type.indexOf('svg') > 0) {
+                            isSvg = 'svg';
+                        }
+
+                        reader.onload = function (e) {
+                            $('.logoselecta label').removeClass('active').find('input').removeAttr('checked');
+                            var out = '<img src="'+e.target.result+'" class="user_watermark">';
+                            // Update custom watermark option
+                            $('.custom-watermark .hold-custom-watermark').html(out);
+                            newimg.src = $('.logoselecta .btn-group-toggle label' ).last().find('img').attr('src');
+                            // $('.custom-watermark').addClass('active');
+                            // $('.custom-watermark input').val(e.target.result).prop("checked", true);
+                        };
+
+                        reader.readAsDataURL(file);
+
+                        newimg.onload = function () {
+                            var canvas = document.createElement("canvas");
+
+                            // resize thumb
+                            var MAX_WIDTH = 400;
+                            var MAX_HEIGHT = 400;
+                            var width = this.width;
+                            var height = this.height;
+                        
+                            if (!options.svglogo || (options.svglogo && isSvg !== 'svg')) {
+                                if (width == 0 || height == 0) {
+                                    $('#companylogo').addClass('is-invalid');
+                                    $('.logoselecta .btn-group-toggle label' ).last().remove();
+                                    return false;
+                                }
+                                var ctx = canvas.getContext("2d");
+                                ctx.drawImage(newimg, 0, 0);
+
+                                if (width > height) {
+                                    height *= MAX_WIDTH / width;
+                                    width = MAX_WIDTH;
+                                } else {
+                                    width *= MAX_HEIGHT / height;
+                                    height = MAX_HEIGHT;
+                                }
+                                canvas.width = width;
+                                canvas.height = height;
+
+                                var ctx = canvas.getContext("2d");
+                                ctx.drawImage(newimg, 0, 0, width, height);
+                                var cldataurl = canvas.toDataURL();
+
+                                $('#companylogoImg').attr('src', cldataurl);
+                                $('#companylogoVal').val(cldataurl);
+                                $('.user_watermark').attr('src', '');
                             }
                         }; // img.onload
                     } else {

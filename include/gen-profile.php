@@ -12,20 +12,26 @@
 <input type="hidden" id="qrcdr-relative" value="<?php echo $relative; ?>">
 <div class="container">
     <div class="row mt-3">
+        
+        <div class="clearfix"></div>
         <div class="col-md-12">
             <div class="card w-100 rounded-lg" style="width: 18rem;box-shadow: 0px 10px 14.1px 0.9px rgb(0 0 0 / 24%), 0px 4px 19.6px 0.4px rgb(0 0 0 / 16%);">
-            <!-- <center><img style="width: 18%;height: 18%; box-shadow: 0px 10px 14.1px 0.9px rgb(0 0 0 / 24%), 0px 4px 19.6px 0.4px rgb(0 0 0 / 16%);" class="card-img-top rounded-circle mt-3" src="https://randomuser.me/api/portraits/men/81.jpg" alt="Card image cap"></center> -->
+                <?php if (!empty($profile->companylogoVal)) { ?>
+        <div class="col-md-3"><img width="150" src="<?= $profile->companylogoVal ?>"></div>
+        <?php } ?>
+                <?php if (!empty($profile->profilepicVal)) { ?>
+                <center><img style="width: 18%;height: 18%; box-shadow: 0px 10px 14.1px 0.9px rgb(0 0 0 / 24%), 0px 4px 19.6px 0.4px rgb(0 0 0 / 16%);" class="card-img-top rounded-circle " src="<?= $profile->profilepicVal ?>" alt="Card image cap"></center>
+                <?php } ?>
               <div class="card-body pt-3">
-                <h2 class="card-title text-center text-capitalize"><?= $profile->vnametitle ?> <?= $profile->vname ?> <?= $profile->vlast ?></h2>
-                <h5 class="card-title text-center text-capitalize my-0"><?= $profile->vtitle ?> - <?= $profile->vcompany ?> </h5>
+                <h2 class="card-title text-center text-capitalize"><?= (!empty($profile->vnametitle)) ? $profile->vnametitle : '' ; ?> <?= (!empty($profile->vname)) ? $profile->vname : '' ; ?> <?= (!empty($profile->vlast)) ? $profile->vlast : '' ; ?></h2>
+                <h5 class="card-title text-center text-capitalize my-0"><?= (!empty($profile->vtitle)) ? $profile->vtitle : '' ; ?> - <?= (!empty($profile->vcompany)) ? $profile->vcompany : '' ; ?> </h5>
                 <div class="row mx-5">
                     <div class="col-md-6">
-                        <center>
-                            <button class="bubbly-button float-right bg-primary">
-                                <i class="fa-solid fa-phone"></i>
-                            </button></center></div>
+                        <a href="<?= (!empty($profile->countrycodevphone)) ? "tel:+".$profile->countrycodevphone."-":""  ?><?= (!empty($profile->vphone)) ? $profile->vphone:"" ?>"><button class="bubbly-button float-right bg-primary"><i class="fa-solid fa-phone"></i></button></a>
+                    </div>
                     <div class="col-md-6">
                         <!-- <center></center> -->
+                        <a href="<?= (!empty($profile->vemail)) ? "mailto:".$profile->vemail:"-" ; ?>"></a>
                         <button class="bubbly-button float-left bg-primary"><i class="fa-solid fa-envelope-open-text"></i></button>
                     </div>
                     <div class="col-md-6 offset-md-3 row shadowqr">
@@ -34,7 +40,7 @@
                     </div>
                     <div class="col-md-6 offset-md-3 row shadowqr mt-4">
                         <div class="col-4 text-center pt-2"><i style="font-size: 2em;" class="fa-solid fa-envelope-open-text pt-1"></i></div>
-                        <div class="col-8 pl-5 pt-1 font-weight-bold text-center"> <?= $profile->vemail ?> <br>  <span class="font-weight-bold">Email</span></div>
+                        <div class="col-8 pl-5 pt-1 font-weight-bold text-center"> <?= (!empty($profile->vemail)) ? $profile->vemail :"-" ; ?> <br>  <span class="font-weight-bold">Email</span></div>
                     </div>
 
                     <div class="col-md-6 offset-md-3 row shadowqr mt-4">
@@ -48,10 +54,10 @@
                     </div>
                     <div class="col-md-6 offset-md-3 row shadowqr mt-4">
                         <div class="col-4 text-center pt-2"><i style="font-size: 2em;" class="fa-solid fa-map-pin pt-3"></i></div>
-                        <div class="col-8 pl-5 pt-1 font-weight-bold text-center"><?= $profile->vaddress ?>  <br><?= $profile->vcity ?> <?= $profile->vstate ?> <br><?= $profile->vcountry ?> <?= $profile->vcap ?> </div>
+                        <div class="col-8 pl-5 pt-1 font-weight-bold text-center"><?= (!empty($profile->vaddress)) ? $profile->vaddress : '' ; ?>  <br><?= (!empty($profile->vcity)) ? $profile->vcity : '' ; ?> <?= (!empty($profile->vstate)) ? $profile->vstate : '' ; ?> <br><?= (!empty($profile->vcountry)) ? $profile->vcountry : '' ; ?> <?= (!empty($profile->vcap)) ? $profile->vcap : '' ; ?> </div>
                     </div>
                 </div>
-                <center><a href="vcard.php?vcard=<?= $data['vcard']?>"><button class="bubbly-button font-weight-bold bg-primary">Download VCARD <i class="fa-solid fa-address-card"></i></button></a></center>
+                <center><a href="vcard.php?token=<?= $_GET['token'] ?>"><button class="bubbly-button font-weight-bold bg-primary">Download VCARD <i class="fa-solid fa-address-card"></i></button></a></center>
               </div>
             </div>
         </div>

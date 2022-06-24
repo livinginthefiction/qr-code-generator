@@ -1,0 +1,7 @@
+[15-Jun-2022 06:06:36 UTC] PHP Notice:  Undefined property: stdClass::$vcity in /home/jt4iz9905ugl/public_html/qr.konemamwenenge.com/include/gen-profile.php on line 51
+[15-Jun-2022 06:06:36 UTC] PHP Notice:  Undefined property: stdClass::$vstate in /home/jt4iz9905ugl/public_html/qr.konemamwenenge.com/include/gen-profile.php on line 51
+[15-Jun-2022 06:06:36 UTC] PHP Notice:  Undefined property: stdClass::$vcountry in /home/jt4iz9905ugl/public_html/qr.konemamwenenge.com/include/gen-profile.php on line 51
+[15-Jun-2022 06:06:36 UTC] PHP Notice:  Undefined property: stdClass::$vcap in /home/jt4iz9905ugl/public_html/qr.konemamwenenge.com/include/gen-profile.php on line 51
+[15-Jun-2022 06:28:12 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/jt4iz9905ugl/public_html/qr.konemamwenenge.com/include/gen-profile.php on line 36
+[15-Jun-2022 06:28:36 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/jt4iz9905ugl/public_html/qr.konemamwenenge.com/include/gen-profile.php on line 36
+[15-Jun-2022 06:30:47 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/jt4iz9905ugl/public_html/qr.konemamwenenge.com/include/gen-profile.php on line 36

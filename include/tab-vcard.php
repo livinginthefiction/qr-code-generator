@@ -6,11 +6,11 @@ if (qrcdr()->getConfig('vcard') == true) { ?>
     <div class="tab-pane fade <?php if ($getsection === "#vcard") echo "show active"; ?>" id="vcard">
         <h4><?php echo qrcdr()->getString('vcard'); ?></h4>
         <div class="row">
-            <div class="col-12 form-group">
+            <div class="col-12 form-group d-none">
                 <label><?php echo qrcdr()->getString('version'); ?></label>
                 <select class="form-select custom-select" name="vversion">
                   <option value="2.1">2.1</option>
-                  <option value="3.0">3.0</option>
+                  <option selected value="3.0">3.0</option>
                   <!--
                   <option value="4.0">4.0</option>
                     -->
@@ -130,7 +130,8 @@ if (qrcdr()->getConfig('vcard') == true) { ?>
 
             <div class="col-12 form-group">
                  <label><?php echo qrcdr()->getString('address'); ?></label>
-                <textarea name="vaddress" class="form-control" maxlength="255"></textarea>
+                <input name="vaddress" class="form-control" maxlength="255">
+                <!-- <textarea name="vaddress" class="form-control" maxlength="255"></textarea> -->
             </div>
             <div class="col-md-6 form-group">
                 <label><?php echo qrcdr()->getString('post_code'); ?></label>
@@ -147,6 +148,27 @@ if (qrcdr()->getConfig('vcard') == true) { ?>
             <div class="col-md-6 form-group">
                 <label><?php echo qrcdr()->getString('country'); ?></label>
                 <input type="text" name="vcountry" class="form-control">
+            </div>
+            <div class="col-12 form-group pp">
+                <label>Profile Picture</label>
+                <div class="custom-file">
+                  <input type="file" name="profilepic" class="custom-file-input form-control" aria-describedby="validate-upload" id="profilepic">
+                  <input type="hidden" name="profilepicVal" id="profilepicVal">
+                  <img width="100" id="profilepicImg" src="">
+                    <div id="validate-upload2" class="invalid-feedback">
+                        Invalid image            </div>
+                  <label class="custom-file-label" for="file"></label>
+                </div>
+            </div>
+            <div class="col-12 form-group my-3 cl">
+                <label>Company Logo</label>
+                <div class="custom-file">
+                  <input type="file" name="companylogo" class="custom-file-input form-control" aria-describedby="validate-upload" id="companylogo">
+                  <input type="hidden" name="companylogoVal" id="companylogoVal">
+                  <img width="100" id="companylogoImg" src="">
+                    <div id="validate-upload3" class="invalid-feedback">Invalid image</div>
+                  <label class="custom-file-label" for="file"></label>
+                </div>
             </div>
         <?php
         /*
