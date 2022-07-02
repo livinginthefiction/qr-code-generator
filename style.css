@@ -471,3 +471,6 @@ input.cropit-image-zoom-input {
 .cropit-image-loaded.cropit-image-zoom-input:not([disabled]){
   display: inline-block;
 }
+
+/*.newbg{background-color: #292929 !important;}*/
+.overlay-gradient{background: unset !important;}

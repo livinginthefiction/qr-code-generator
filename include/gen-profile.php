@@ -86,6 +86,7 @@ for (var i = 0; i < bubblyButtons.length; i++) {
 </script>
 
 <style type="text/css">
+    .newbg{background-color: #292929 !important;}
     .shadowqr{box-shadow: 0px 10px 14.1px 0.9px rgb(0 0 0 / 24%), 0px 4px 19.6px 0.4px rgb(0 0 0 / 16%);}
     /*body {
   font-size: 16px;
@@ -177,6 +178,10 @@ for (var i = 0; i < bubblyButtons.length; i++) {
     background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
+}
+
+@media only screen and (max-width: 425px) {
+  .bubbly-button{width: 100%;}
 }
 </style>
 

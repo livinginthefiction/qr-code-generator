@@ -65,3 +65,6 @@
     </div>
     <div class="toast-body"></div>
 </div>
+<style type="text/css">
+    .newbg{background-color: #292929 !important;}
+</style>

@@ -1,8 +1,8 @@
 <?php
     // Database configuration
     $servername     = "localhost";
-    $username = "root";
-    $password = "";
+    $username = "qrcdr";
+    $password = "qrcdr@22222";
     $dbName     = "qrcdr";
 
     $db = new mysqli($servername, $username, $password,  $dbName);
